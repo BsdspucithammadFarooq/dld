@@ -1,0 +1,27 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: 02/Not.hdl
+
+/**
+ * minority:
+ * out = out
+ */
+
+CHIP minority {
+    In w,x,y,z;
+    OUT out;
+
+    PARTS:
+
+    And(a=w,b=x,out=temp1);
+    And(a=temp1,b=z,out=temp2);
+    And(a=x,b=y,out=temp3);
+    And(a=temp3,b=z,out=temp4);
+    And(a=temp1,b=y,out=temp5);
+    And(a=w,b=y,out=temp6);
+    And(a=temp6,b=z,out=temp7);
+    Or(a=temp4,b=temp7,out=w1);
+    Or(a=temp5,b=temp2,out=w2);
+    Or(a=w1,b=w2,out=out);
+}
